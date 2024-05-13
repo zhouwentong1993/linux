@@ -142,7 +142,6 @@ EXPORT_SYMBOL_GPL(clean_acked_data_flush);
 #ifdef CONFIG_CGROUP_BPF
 static void bpf_skops_parse_hdr(struct sock *sk, struct sk_buff *skb)
 {
-ss
 	bool unknown_opt = tcp_sk(sk)->rx_opt.saw_unknown &&
 		BPF_SOCK_OPS_TEST_FLAG(tcp_sk(sk),
 				       BPF_SOCK_OPS_PARSE_UNKNOWN_HDR_OPT_CB_FLAG);
