@@ -654,7 +654,7 @@ void skb_release_head_state(struct sk_buff *skb)
 	nf_conntrack_put(skb_nfct(skb));
 #endif
 	skb_ext_put(skb);
-}
+
 
 /* Free everything but the sk_buff shell. */
 static void skb_release_all(struct sk_buff *skb)

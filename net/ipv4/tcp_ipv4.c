@@ -1633,10 +1633,10 @@ u16 tcp_v4_get_syncookie(struct sock *sk, struct iphdr *iph,
  * This is because we cannot sleep with the original spinlock
  * held.
  */
+// 入口函数
 int tcp_v4_do_rcv(struct sock *sk, struct sk_buff *skb)
 {
 	struct sock *rsk;
-
 	if (sk->sk_state == TCP_ESTABLISHED) { /* Fast path */
 		struct dst_entry *dst = sk->sk_rx_dst;
 
