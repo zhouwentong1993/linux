@@ -1500,6 +1500,22 @@ int tcp_v4_conn_request(struct sock *sk, struct sk_buff *skb)
 	 * timeout.
 	 */
 	if (sk_acceptq_is_full(sk) && inet_csk_reqsk_queue_young(sk) > 1) {
+	    // 可以通过 cat /proc/net/netstat 找到 ListenOverflows 的值。
+	    // 下面是脚本
+	    /*
+	    #!/bin/bash
+
+        # 定义函数来提取 ListenOverflows 的值
+        get_listen_overflows() {
+            grep "TcpExt:" /proc/net/netstat | awk '{print $21}'
+        }
+
+        # 循环打印 ListenOverflows 的值，每秒一次
+        while true; do
+            echo "$(date +"%Y-%m-%d %H:%M:%S.%N") $(get_listen_overflows)"
+            sleep 1
+        done
+	    */
 		NET_INC_STATS_BH(sock_net(sk), LINUX_MIB_LISTENOVERFLOWS);
 		goto drop;
 	}
