@@ -254,6 +254,9 @@ static inline int reqsk_queue_len_young(const struct request_sock_queue *queue)
 	return queue->listen_opt->qlen_young;
 }
 
+//http://debuginfo.centos.org/7/x86_64/kernel-plus-debuginfo-common-x86_64-3.10.0-1127.el7.centos.plus.x86_64.rpm
+//http://debuginfo.centos.org/7/x86_64/kernel-plus-debuginfo-common-x86_64-3.10.0-1160.el7.centos.plus.x86_64.rpm
+
 static inline int reqsk_queue_is_full(const struct request_sock_queue *queue)
 {
 	return queue->listen_opt->qlen >> queue->listen_opt->max_qlen_log;

@@ -1493,7 +1493,8 @@ int tcp_v4_conn_request(struct sock *sk, struct sk_buff *skb)
 			goto drop;
 	}
 
-	/* Accept backlog is full. If we have already queued enough
+	/*
+	 * Accept backlog is full. If we have already queued enough
 	 * of warm entries in syn queue, drop request. It is better than
 	 * clogging syn queue with openreqs with exponentially increasing
 	 * timeout.
@@ -1639,6 +1640,7 @@ EXPORT_SYMBOL(tcp_v4_conn_request);
  * The three way handshake has completed - we got a valid synack -
  * now create the new socket.
  */
+ // 三次握手最后一次 ack 处理
 struct sock *tcp_v4_syn_recv_sock(struct sock *sk, struct sk_buff *skb,
 				  struct request_sock *req,
 				  struct dst_entry *dst)
@@ -1652,6 +1654,7 @@ struct sock *tcp_v4_syn_recv_sock(struct sock *sk, struct sk_buff *skb,
 #endif
 	struct ip_options_rcu *inet_opt;
 
+    // 全连接队是否满了，直接 goto 到溢出，不处理 ack 包。
 	if (sk_acceptq_is_full(sk))
 		goto exit_overflow;
 
